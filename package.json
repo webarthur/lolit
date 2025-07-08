@@ -1,8 +1,10 @@
 {
   "name": "lolit",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "High-performance template literal engine for JavaScript with built-in directives and zero runtime overhead.",
-  "main": "./dist/lolit.cjs",
+  "main": "./dist/lolit.node.cjs",
+  "module": "./dist/lolit.node.mjs",
+  "browser": "./dist/lolit.browser.mjs",
   "type": "module",
   "scripts": {
     "build": "rollup -c",
@@ -24,8 +26,14 @@
     "engine"
   ],
   "exports": {
-    "import": "./dist/lolit.mjs",
-    "require": "./dist/lolit.cjs"
+    "import": {
+      "browser": "./dist/lolit.browser.mjs",
+      "default": "./dist/lolit.node.mjs"
+    },
+    "require": {
+      "browser": "./dist/lolit.browser.cjs",
+      "default": "./dist/lolit.node.cjs"
+    }
   },
   "author": "Arthur Ronconi <webarthur@gmail.com> (https://devarthur.com)",
   "license": "MIT",
@@ -33,6 +41,7 @@
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "lit-html": "^3.3.0",
     "rollup": "^4.41.0"
   }
